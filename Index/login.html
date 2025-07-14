@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Login Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: sans-serif;
+      background: #1b1b1b;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-box {
+      width: 320px;
+      height: auto;
+      background: #252525;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .button-box {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 40px;
+  border-radius: 30px;
+  background: #1b1b1b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+}
+
+.toggle-btn {
+  width: 50%;
+  border: none;
+  background: transparent;
+  color: #eee;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+#btn {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 50%;
+  height: 34px;
+  background: linear-gradient(to left, #57AAB4, #57AAB4);
+  border-radius: 30px;
+  transition: left 0.3s;
+  z-index: 0;
+}
+
+
+    .input-group {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .input-group.active {
+      display: flex;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      border-left: 2px solid #57AAB4;
+      border-bottom: 2px solid #57AAB4;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      background: #57AAB4;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper i {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #57AAB4;
+      cursor: pointer;
+    }
+
+    .toast {
+      margin-top: 15px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .toast.error {
+      background: #ff4d4d;
+      color: #fff;
+    }
+
+    .toast.success {
+      background: #4caf50;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="main-box">
+    <div class="button-box" style="position: relative; overflow: hidden;">
+  <div id="btn"></div>
+  <button id="log" class="toggle-btn" onclick="showLogin()">Login</button>
+  <button id="reg" class="toggle-btn" onclick="showRegister()">Register</button>
+</div>
+
+
+      <!-- ✅ Toast message -->
+      <div id="toast" class="toast" style="display:none;"></div>
+
+      <!-- ✅ Login Form -->
+      <form id="login-form" class="input-group active" method="POST" action="auth.php" onsubmit="return validateLogin()">
+        <input type="hidden" name="action" value="login" />
+        <input type="text" class="input-field" name="name" placeholder="Username" required />
+        <div class="password-wrapper">
+          <input type="password" class="input-field" name="password" placeholder="Password" id="login-password" required />
+          <i class="fas fa-eye" id="toggle-login"></i>
+        </div>
+        <input type="submit" class="submit-btn" value="Login" />
+      </form>
+
+      <!-- ✅ Register Form -->
+      <form id="register-form" class="input-group" method="POST" action="auth.php" onsubmit="return validateRegister()">
+        <input type="hidden" name="action" value="register" />
+        <input type="text" class="input-field" name="name" placeholder="Username" required />
+        <input type="email" class="input-field" name="email" placeholder="Email" required />
+        <div class="password-wrapper">
+          <input type="password" class="input-field" name="password" placeholder="Password" id="register-password" required />
+          <i class="fas fa-eye" id="toggle-register"></i>
+        </div>
+        <input type="submit" class="submit-btn" value="Register" />
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ Show/Hide Password + Toast + Validation -->
+  <script>
+    const loginPwd = document.getElementById("login-password");
+    const toggleLogin = document.getElementById("toggle-login");
+
+    toggleLogin.addEventListener("click", () => {
+      const type = loginPwd.type === "password" ? "text" : "password";
+      loginPwd.type = type;
+      toggleLogin.classList.toggle("fa-eye");
+      toggleLogin.classList.toggle("fa-eye-slash");
+    });
+
+    const registerPwd = document.getElementById("register-password");
+    const toggleRegister = document.getElementById("toggle-register");
+
+    toggleRegister.addEventListener("click", () => {
+      const type = registerPwd.type === "password" ? "text" : "password";
+      registerPwd.type = type;
+      toggleRegister.classList.toggle("fa-eye");
+      toggleRegister.classList.toggle("fa-eye-slash");
+    });
+function showLogin() {
+  document.getElementById("login-form").classList.add("active");
+  document.getElementById("register-form").classList.remove("active");
+  document.getElementById("btn").style.left = "0";
+  clearToast();
+}
+
+function showRegister() {
+  document.getElementById("register-form").classList.add("active");
+  document.getElementById("login-form").classList.remove("active");
+  document.getElementById("btn").style.left = "50%";
+  clearToast();
+}
+
+    function validateRegister() {
+      const password = registerPwd.value;
+      if (password.length < 8) {
+        showToast("Password must be at least 8 characters.", "error");
+        return false;
+      }
+      return true;
+    }
+
+    function validateLogin() {
+      clearToast();
+      return true;
+    }
+
+    function showToast(message, type = "success") {
+      const toast = document.getElementById("toast");
+      toast.innerText = message;
+      toast.className = `toast ${type}`;
+      toast.style.display = "block";
+    }
+
+    function clearToast() {
+      const toast = document.getElementById("toast");
+      toast.style.display = "none";
+    }
+  </script>
+</body>
+</html>
