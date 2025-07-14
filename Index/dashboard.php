@@ -114,23 +114,25 @@ $role = $_SESSION['role'] ?? 'user';
 
   <div class="container">
     <div class="sidebar">
-       <a href="profile.php" class="active">👤 Profile</a>
-       <a href="learn.php" class="<?= basename($_SERVER['PHP_SELF']) === 'learn.php' ? 'active' : '' ?>">📚 Learn</a>
-          <a href="#">🍽️ Meal Planner</a>
-      <?php if ($role === 'admin'): ?>
-    <a href="view_foods.php">📊 Food Info (Preview)</a>
-        <a href="food_db.php">🥗 Food Database</a>
-    
-      <?php else: ?>
-        <a href="view_foods.php">🥗 Food Info</a>
-      <?php endif; ?>
+   <a href="profile.php" class="active">👤 Profile</a>
+   <a href="learn.php" class="<?= basename($_SERVER['PHP_SELF']) === 'learn.php' ? 'active' : '' ?>">📚 Learn</a>
+   <a href="#">🍽️ Meal Planner</a>
+   <?php if ($role === 'admin'): ?>
+     <a href="view_foods.php">📊 Food Info (Preview)</a>
+     <a href="food_db.php">🥗 Food Database</a>
+     <a href="learn_admin.php">📤 Upload Content</a> <!-- ✅ New Upload Link -->
+   <?php else: ?>
+     <a href="view_foods.php">🥗 Food Info</a>
+   <?php endif; ?>
+   <a href="#">🎯 Goals & Progress</a>
+   <a href="#">⚙️ Settings</a>
+</div>
+
 
    
  
 
-      <a href="#">🎯 Goals & Progress</a>
-      <a href="#">⚙️ Settings</a>
-    </div>
+     
 
     <div class="content">
       <?php if (isset($_SESSION['flash'])): ?>
