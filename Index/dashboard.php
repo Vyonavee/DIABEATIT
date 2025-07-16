@@ -113,20 +113,23 @@ $role = $_SESSION['role'] ?? 'user';
   </div>
 
   <div class="container">
-    <div class="sidebar">
-   <a href="profile.php" class="active">👤 Profile</a>
-   <a href="learn.php" class="<?= basename($_SERVER['PHP_SELF']) === 'learn.php' ? 'active' : '' ?>">📚 Learn</a>
-   <a href="#">🍽️ Meal Planner</a>
-   <?php if ($role === 'admin'): ?>
-     <a href="view_foods.php">📊 Food Info (Preview)</a>
-     <a href="food_db.php">🥗 Food Database</a>
-     <a href="learn_admin.php">📤 Upload Content</a> <!-- ✅ New Upload Link -->
-   <?php else: ?>
-     <a href="view_foods.php">🥗 Food Info</a>
-   <?php endif; ?>
-   <a href="#">🎯 Goals & Progress</a>
-   <a href="#">⚙️ Settings</a>
+   <div class="sidebar">
+  <a href="profile.php" class="<?= basename($_SERVER['PHP_SELF']) === 'profile.php' ? 'active' : '' ?>">👤 Profile</a>
+  <a href="learn.php" class="<?= basename($_SERVER['PHP_SELF']) === 'learn.php' ? 'active' : '' ?>">📚 Learn</a>
+  <a href="meal_planner.php" class="<?= basename($_SERVER['PHP_SELF']) === 'meal_planner.php' ? 'active' : '' ?>">🍽️ Meal Planner</a>
+
+  <?php if ($role === 'admin'): ?>
+    <a href="view_foods.php" class="<?= basename($_SERVER['PHP_SELF']) === 'view_foods.php' ? 'active' : '' ?>">📊 Food Info (Preview)</a>
+    <a href="food_db.php" class="<?= basename($_SERVER['PHP_SELF']) === 'food_db.php' ? 'active' : '' ?>">🥗 Food Database</a>
+    <a href="learn_admin.php" class="<?= basename($_SERVER['PHP_SELF']) === 'learn_admin.php' ? 'active' : '' ?>">📤 Upload Content</a>
+  <?php else: ?>
+    <a href="view_foods.php" class="<?= basename($_SERVER['PHP_SELF']) === 'view_foods.php' ? 'active' : '' ?>">🥗 Food Info</a>
+  <?php endif; ?>
+
+  <a href="#" class="">🎯 Goals & Progress</a>
+  <a href="#" class="">⚙️ Settings</a>
 </div>
+
 
 
    
