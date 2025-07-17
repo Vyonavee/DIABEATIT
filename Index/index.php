@@ -1,3 +1,4 @@
+<!-- File: Index/index.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,8 @@
   <title>Welcome to Diabeatit</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
   <style>
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: "Segoe UI", sans-serif;
@@ -37,20 +40,24 @@
     }
 
     .hero {
+      height: 400px;
+      color: white;
       text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(to right, #a8e6cf, #dcedc1);
+      background: url('images/healthy food.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero h2 {
-      font-size: 36px;
-      color: #333;
+      font-size: 42px;
+      margin-bottom: 10px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
 
     .hero p {
-      font-size: 18px;
-      color: #555;
-      margin-top: 10px;
+      font-size: 20px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
     }
 
     .section {
@@ -60,6 +67,7 @@
 
     .section h3 {
       color: #4CAF50;
+      margin-bottom: 20px;
     }
 
     .card-container {
@@ -67,7 +75,6 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      margin-top: 30px;
     }
 
     .card {
@@ -81,6 +88,13 @@
     .card p {
       color: #444;
       font-style: italic;
+    }
+
+    .image-banner {
+      width: 100%;
+      height: 350px;
+      background: url('images/Veggiepic.jpg') center/cover no-repeat;
+      margin: 60px 0;
     }
 
     .modal {
@@ -105,7 +119,6 @@
 
     .modal-content h4 {
       margin-top: 0;
-      margin-bottom: 10px;
     }
 
     .close-btn {
@@ -145,6 +158,11 @@
       background: #eee;
       color: #666;
     }
+
+    @media(max-width: 768px) {
+      .hero h2 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -156,18 +174,18 @@
 
 <div class="hero">
   <h2>Take Charge of Your Diabetes Today</h2>
-  <p>Personalized tools and local solutions for Type 1, Type 2, and Prediabetes patients in Kenya</p>
+  <p>Tools for Type 1, Type 2, and Prediabetes in Kenya</p>
 </div>
 
 <div class="section">
   <h3>🌟 Why Choose Diabeatit?</h3>
   <div class="card-container">
     <div class="card">
-      <p>“Meal planning on a budget has never been easier. Diabeatit changed how I eat.”</p>
+      <p>“Meal planning on a budget has never been easier.”</p>
       <strong>- Jane, Nairobi</strong>
     </div>
     <div class="card">
-      <p>“I finally understand what I eat. The food info is so detailed!”</p>
+      <p>“I finally understand what I eat. So detailed!”</p>
       <strong>- Kevin, Kisumu</strong>
     </div>
     <div class="card">
@@ -176,6 +194,8 @@
     </div>
   </div>
 </div>
+
+<div class="image-banner"></div>
 
 <!-- Login Modal -->
 <div class="modal" id="loginModal">
@@ -207,7 +227,7 @@
 <script>
   window.onclick = function(e) {
     const modal = document.getElementById('loginModal');
-    if (e.target == modal) {
+    if (e.target === modal) {
       modal.style.display = 'none';
     }
   };
