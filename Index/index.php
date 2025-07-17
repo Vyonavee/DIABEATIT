@@ -1,4 +1,3 @@
-<!-- File: Index/index.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,57 +6,59 @@
   <title>Welcome to Diabeatit</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
       font-family: "Segoe UI", sans-serif;
       background: #f9f9f9;
+      color: #333;
     }
 
     header {
       background: #4CAF50;
       padding: 20px 30px;
-      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 26px;
-    }
-
-    header button {
-      background: #FF9800;
       color: white;
+    }
+
+    header .btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btns button {
+      background: #FF9800;
       border: none;
       padding: 10px 16px;
+      color: white;
       border-radius: 20px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .hero {
-      height: 400px;
-      color: white;
-      text-align: center;
-      background: url('images/healthy food.jpg') center/cover no-repeat;
+      height: 100vh;
+      background: url('images/healthy food.jpg') center center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
     }
 
     .hero h2 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      font-size: 48px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
     }
 
     .hero p {
-      font-size: 20px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      font-size: 22px;
+      margin-top: 10px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
 
     .section {
@@ -79,28 +80,39 @@
 
     .card {
       background: white;
-      border-radius: 10px;
       padding: 20px;
-      max-width: 300px;
+      max-width: 280px;
+      border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .card p {
-      color: #444;
       font-style: italic;
+      margin-bottom: 8px;
     }
 
-    .image-banner {
-      width: 100%;
-      height: 350px;
-      background: url('images/Veggiepic.jpg') center/cover no-repeat;
+    .image-feature {
+      background: url('images/balanced diet.jpg') center center/cover no-repeat;
+      height: 450px;
       margin: 60px 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-feature h2 {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-size: 36px;
     }
 
     .modal {
       display: none;
       position: fixed;
-      z-index: 999;
+      z-index: 1000;
       left: 0; top: 0;
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -117,17 +129,13 @@
       position: relative;
     }
 
-    .modal-content h4 {
-      margin-top: 0;
-    }
-
     .close-btn {
       position: absolute;
       top: 10px;
       right: 15px;
-      color: white;
       font-size: 20px;
       cursor: pointer;
+      color: white;
     }
 
     .input-field {
@@ -147,21 +155,21 @@
       background: #57AAB4;
       color: #fff;
       font-weight: bold;
-      cursor: pointer;
       border-radius: 30px;
       width: 100%;
+      cursor: pointer;
     }
 
     footer {
-      text-align: center;
-      padding: 20px;
       background: #eee;
+      padding: 20px;
+      text-align: center;
       color: #666;
     }
 
-    @media(max-width: 768px) {
-      .hero h2 { font-size: 28px; }
-      .hero p { font-size: 16px; }
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 32px; }
+      .hero p { font-size: 18px; }
     }
   </style>
 </head>
@@ -169,15 +177,18 @@
 
 <header>
   <h1>🍀 Diabeatit</h1>
-  <button onclick="document.getElementById('loginModal').style.display='flex'">Login / Signup</button>
+  <div class="btns">
+    <button onclick="document.getElementById('loginModal').style.display='flex'">Login / Signup</button>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact Us</button>
+  </div>
 </header>
 
-<div class="hero">
+<section class="hero">
   <h2>Take Charge of Your Diabetes Today</h2>
-  <p>Tools for Type 1, Type 2, and Prediabetes in Kenya</p>
-</div>
+  <p>Personalized support for Type 1, Type 2 & Prediabetes in Kenya</p>
+</section>
 
-<div class="section">
+<section class="section">
   <h3>🌟 Why Choose Diabeatit?</h3>
   <div class="card-container">
     <div class="card">
@@ -193,9 +204,20 @@
       <strong>- Mercy, Mombasa</strong>
     </div>
   </div>
-</div>
+</section>
 
-<div class="image-banner"></div>
+<section class="image-feature">
+  <h2>Eat Better. Feel Better. Live Better.</h2>
+</section>
+
+<section class="section" id="contact">
+  <h3>📞 Contact Us</h3>
+  <p>Email: support@diabeatit.co.ke<br>Phone: +254 712 345 678</p>
+</section>
+
+<footer>
+  &copy; <?= date('Y') ?> Diabeatit. All rights reserved.
+</footer>
 
 <!-- Login Modal -->
 <div class="modal" id="loginModal">
@@ -219,10 +241,6 @@
     </form>
   </div>
 </div>
-
-<footer>
-  &copy; <?= date('Y') ?> Diabeatit. All rights reserved.
-</footer>
 
 <script>
   window.onclick = function(e) {
